@@ -69,7 +69,7 @@
               title: 'Login...',
               text: 'Anda Masuk sebagai Siswa'
             }).then( function(){
-              window.location.href = '/absenPTS/modul/siswa'
+              window.location.href = '/modul/siswa'
             });
         });
         $(".btn-login-pengawas").click( function(){
@@ -78,7 +78,7 @@
               title: 'Login...',
               text: 'Anda Masuk sebagai Pengawas'
             }).then( function(){
-              window.location.href = '/absenPTS/modul/guru'
+              window.location.href = '/modul/guru'
             });
         });
         $(".btn-login-panitia").click( function(){
@@ -87,7 +87,7 @@
               title: 'Login...',
               text: 'Anda Masuk sebagai Panitia'
             }).then( function(){
-              window.location.href = '/absenPTS/modul/panitia'
+              window.location.href = '/modul/panitia'
             });
         });
 
