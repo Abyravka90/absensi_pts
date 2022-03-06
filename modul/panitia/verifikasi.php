@@ -59,7 +59,7 @@ if(isset($_POST['kode_guru'])){
                             <div class="alert alert-warning">Data yang dikirimkan adalah </div>
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-4 pl-4"><img class="img-thumbnail"src="foto/<?php echo $foto ?>" height="100px" alt=""></div>
+                                    <div class="col-md-4 pl-4"><img class="img-thumbnail"src="foto/<?php echo $foto ?>" height="50px" alt=""></div>
                                     <div class="col-md-8">
                                         Kode Guru : <span class="badge badge-info"><?= $kode_guru ?></span><br>
                                         Nama : <span class="badge badge-info"><?= $nama_panitia ?></span><br>

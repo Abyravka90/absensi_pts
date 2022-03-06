@@ -74,7 +74,7 @@ if(isset($_POST['nama_lengkap'])){
                             <div class="alert alert-warning">Data yang dikirimkan adalah </div>
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-4 pl-4"><img class="img-thumbnail" src="foto/<?= $foto ?>" height="100px" alt=""></div>
+                                    <div class="col-md-4 pl-4"><img class="img-thumbnail" src="foto/<?= $foto ?>" height="50px" alt=""></div>
                                     <div class="col-md-8">
                                         Nisn : <span class="badge badge-info"><?= $nisn ?></span><br>
                                         Nama : <span class="badge badge-info"><?= $nama_lengkap ?></span><br>
