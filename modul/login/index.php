@@ -78,7 +78,7 @@
               title: 'Login...',
               text: 'Anda Masuk sebagai Pengawas'
             }).then( function(){
-              window.location.href = '/modul/guru'
+              window.location.href = '/modul/pengawas'
             });
         });
         $(".btn-login-panitia").click( function(){

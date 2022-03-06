@@ -26,7 +26,7 @@
                             </div>
                             <div class="text-center">
                                 <div class="form-group">
-                                    <input type="password" name="password" placeholder="Masukan Password" id="" class="form-control">
+                                    <input type="password"  placeholder="Masukan Password" id="password" class="form-control">
                                 </div>
                             
                             </div>
@@ -46,35 +46,27 @@
 
     <script>
       $(document).ready(function() {
-        $(".btn-login-siswa").click( function(){
-          Swal.fire({
-              type: 'info',
-              title: 'Login...',
-              text: 'Anda Masuk sebagai Siswa'
-            }).then( function(){
-              window.location.href = '/absenPTS/modul/siswa'
+        $(".btn-login-pengawas").click( function() {
+          var password = $("#password").val();
+
+          if(password.length == "") {
+
+            Swal.fire({
+              type: 'warning',
+              title: 'Oops...',
+              text: 'Password Wajib Diisi !'
             });
-        });
-        $(".btn-login-pengawas").click( function(){
-          Swal.fire({
+
+          }else if(password == 20258413){
+            Swal.fire({
               type: 'info',
               title: 'Login...',
               text: 'Anda Masuk sebagai Pengawas'
             }).then( function(){
-              window.location.href = '/absenPTS/modul/guru'
+              window.location.href = '/modul/pengawas/absen.php'
             });
-        });
-        $(".btn-login-panitia").click( function(){
-          Swal.fire({
-              type: 'info',
-              title: 'Login...',
-              text: 'Anda Masuk sebagai Panitia'
-            }).then( function(){
-              window.location.href = '/absenPTS/modul/admin'
-            });
-        });
-
-
+          } 
+        })
       });
 
         // $(".btn-login").click( function() {
