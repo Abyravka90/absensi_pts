@@ -19,11 +19,7 @@ if(isset($_POST['signaturesubmit'])){
 } 
 if(isset($_POST['kode_guru'])){
     $kode_guru = $_POST['kode_guru'];
-    $kelas = $_POST['kelas'];
-    $mapel = $_POST['mapel'];
-    // echo 'kode guru'.$kode_guru;
-    // echo 'kode kelas'.$kelas;
-    // echo 'kode mapel'.$mapel;
+
     $ekstensi_diperbolehkan = array('png','jpg','jpeg');
     $nama = $_FILES['foto']['name'];
     $x = explode('.',$nama);
@@ -32,16 +28,12 @@ if(isset($_POST['kode_guru'])){
     if(in_array($ekstensi,$ekstensi_diperbolehkan)=== true){
         move_uploaded_file($file_tmp, 'foto/'.$nama);
         $query_insert_absen_guru = mysqli_query($conn, "INSERT INTO `tbl_absen_guru` (id, kode_guru, id_mapel, id_kelas, jabatan, foto, `time`)
-        VALUES('', '$kode_guru', '$mapel', '$kelas', 'pengawas', '$nama', now())");
-        $query_select_pengawas = mysqli_query($conn, "SELECT * FROM `tbl_absen_guru` JOIN `tbl_guru` JOIN `tbl_kelas` JOIN `tbl_mapel`
-        WHERE tbl_absen_guru.kode_guru ='$kode_guru' AND tbl_absen_guru.id_kelas = tbl_kelas.id_kelas
-         AND tbl_absen_guru.id_mapel = tbl_mapel.id_mapel 
-         AND tbl_absen_guru.kode_guru = tbl_guru.kode_guru");
-        $data_pengawas = mysqli_fetch_object($query_select_pengawas);
-        $nama_pengawas = $data_pengawas -> nama_lengkap;
-        $kelas = $data_pengawas -> nama_kelas;
-        $mapel = $data_pengawas -> nama_mapel;
-        $foto = $data_pengawas -> foto;
+        VALUES('', '$kode_guru', 0, 0, 'panita', '$nama', now())");
+        $query_select_panitia = mysqli_query($conn, "SELECT * FROM `tbl_absen_guru` JOIN `tbl_guru` 
+        WHERE tbl_absen_guru.kode_guru ='$kode_guru' AND tbl_absen_guru.kode_guru = tbl_guru.kode_guru");
+        $data_panitia = mysqli_fetch_object($query_select_panitia);
+        $nama_panitia = $data_panitia -> nama_lengkap;
+        $foto = $data_panitia -> foto;
     }else{
         echo '<script>alert("format harus gambar");window.location.href="absen.php"</script>';
     }
@@ -67,12 +59,11 @@ if(isset($_POST['kode_guru'])){
                             <div class="alert alert-warning">Data yang dikirimkan adalah </div>
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-4 pl-4"><img class="img-thumbnail" src="foto/<?= $foto ?>" height="100px" alt=""></div>
+                                    <div class="col-md-4 pl-4"><img class="img-thumbnail"src="foto/<?php echo $foto ?>" height="100px" alt=""></div>
                                     <div class="col-md-8">
                                         Kode Guru : <span class="badge badge-info"><?= $kode_guru ?></span><br>
-                                        Nama : <span class="badge badge-info"><?= $nama_pengawas ?></span><br>
-                                        Kelas : <span class="badge badge-info"><?= $kelas ?></span><br>
-                                        Mata Pelajaran : <span class="badge badge-info"><?= $mapel ?></span><br>
+                                        Nama : <span class="badge badge-info"><?= $nama_panitia ?></span><br>
+                                        Foto : <span class="badge badge-info"><?= $foto ?></span><br>
                                     </div>
                                 </div>
                             </div>
