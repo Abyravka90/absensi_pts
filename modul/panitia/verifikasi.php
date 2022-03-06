@@ -28,7 +28,7 @@ if(isset($_POST['kode_guru'])){
     if(in_array($ekstensi,$ekstensi_diperbolehkan)=== true){
         move_uploaded_file($file_tmp, 'foto/'.$nama);
         $query_insert_absen_guru = mysqli_query($conn, "INSERT INTO `tbl_absen_guru` (id, kode_guru, id_mapel, id_kelas, jabatan, foto, `time`)
-        VALUES('', '$kode_guru', 0, 0, 'panita', '$nama', now())");
+        VALUES('', '$kode_guru', 0, 0, 'panitia', '$nama', now())");
         $query_select_panitia = mysqli_query($conn, "SELECT * FROM `tbl_absen_guru` JOIN `tbl_guru` 
         WHERE tbl_absen_guru.kode_guru ='$kode_guru' AND tbl_absen_guru.kode_guru = tbl_guru.kode_guru");
         $data_panitia = mysqli_fetch_object($query_select_panitia);

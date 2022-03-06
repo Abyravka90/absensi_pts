@@ -1,6 +1,10 @@
 <!-- blok PHP -->
 <?php 
-include '../../config/koneksi.php';
+    include '../../config/koneksi.php';
+
+
+    // ambil data untuk kelas
+    $query_kelas = mysqli_query($conn, "SELECT * FROM `tbl_kelas`");
 
 ?>
 <!-- blok HTML -->
@@ -17,23 +21,33 @@ include '../../config/koneksi.php';
   <body>
     <?php include 'menu.php'; ?>
     <?php 
-    $jenis = $_GET['jenis'];
+    $jenis = 'siswa';
     $id_kelas = 2;
-    $id_mapel = 1;
     if(isset($_GET['id_kelas'])){
         $id_kelas = $_GET['id_kelas'];
       }
-    if(isset($_GET['id_mapel'])){
-        $id_mapel = $_GET['id_mapel'];
-      }
+
     ?>
     <div class="col-md-8">
+      <form action="" method="get">
+        <div class="form-group">
+          <label for="mapel">Pilih Kelas :</label>
+            <select class="form-control" name="id_kelas" id="">
+                <?php while($data_kelas = mysqli_fetch_object($query_kelas)){ ?>
+                   <option value="<?= $data_kelas->id_kelas ?>"><?= $data_kelas->nama_kelas ?></option>
+                    <?php } ?>
+                   </select>
+        </div>
+        <button type="submit" class="btn btn-info mb-3">Pilih</button>  
+      </form>
     <div id="tab">
       <table class="table table-striped table-bordered table-hover" style="width:100%">
           <thead>
               <?php
-              $query_siswa = mysqli_query($conn, "SELECT * FROM `tbl_siswa` JOIN tbl_kelas  JOIN tbl_mapel 
-              WHERE tbl_siswa.id_kelas AND tbl_kelas.id_kelas = '$id_kelas' AND tbl_mapel.id_mapel = '$id_mapel'"); 
+              $query_siswa = mysqli_query($conn, "SELECT * FROM `tbl_kelas` JOIN `tbl_siswa` JOIN `tbl_mapel`
+              WHERE tbl_kelas.id_kelas = tbl_siswa.id_kelas 
+              AND tbl_siswa.id_mapel = tbl_mapel.id_mapel
+              AND tbl_siswa.id_kelas = '$id_kelas'"); 
               ?>
               <tr>
                 <th>no peserta</th>  
@@ -60,9 +74,10 @@ include '../../config/koneksi.php';
                 <?php } ?>
           </tbody>
       </table>
-      <p>
-        <input type="button" value="Export ke PDF" id="btPrint" onclick="createPDF()"/></p>
     </div>
+    <p>
+      <input type="button" value="Export ke PDF" id="btPrint" onclick="createPDF()"/>
+    </p>
     </div>
     <!-- tutup row dan container -->
     </div>
@@ -81,7 +96,7 @@ include '../../config/koneksi.php';
         var win = window.open('', '', 'height=700,width=700');
 
         win.document.write('<html><head>');
-        win.document.write('<title>Profile</title>');   // <title> FOR PDF HEADER.
+        win.document.write('<title>ABSENSI PTS SMK FATAHILLAH CILEUNGSI</title>');   // <title> FOR PDF HEADER.
         win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
         win.document.write('</head>');
         win.document.write('<body>');
