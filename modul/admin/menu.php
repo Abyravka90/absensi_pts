@@ -2,10 +2,9 @@
     <div class="row">
         <div class="col-md-4"><ul class="list-group">
               <li class="list-group-item active">MAIN MENU</li>
-              <a href="" class="list-group-item" style="color: #212529;">Absen</a>
-              <a href="" class="list-group-item" style="color: #212529;">Mata Pelajaran</a>
+              <a href="siswa.php?jenis=siswa" class="list-group-item" style="color: #212529;">siswa</a>
+              <a href="pengawas.php?jenis=pengawas" class="list-group-item" style="color: #212529;">pengawas</a>
+              <a href="panitia.php?jenis=panitia" class="list-group-item" style="color: #212529;">panitia</a>
               <a href="" class="list-group-item" style="color: #212529;">Logout</a>
             </ul></div>
-        <div class="col-md-8">bilah data</div>
-    </div>
-</div>
+        
