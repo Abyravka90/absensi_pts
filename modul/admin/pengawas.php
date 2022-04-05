@@ -1,6 +1,13 @@
 <!-- blok PHP -->
 <?php 
     include '../../config/koneksi.php';
+    if (isset($_GET['id'])){
+      $id= $_GET['id'];
+      echo "DELETE From `tbl_absen_guru` WHERE id = $id";
+      $query_hapus = mysqli_query($conn,"DELETE From `tbl_absen_guru` WHERE id = $id");
+    
+      
+    }
 ?>
 <!-- blok HTML -->
 <!doctype html>
@@ -35,6 +42,7 @@
                 <th>foto</th>  
                 <th>ttd</th>  
                 <th>waktu absen</th>  
+                <th>action</th>  
               </tr>
           </thead>
           <tbody>
@@ -49,6 +57,7 @@
                     <td><img height="50px" src="../pengawas/foto/<?= $data_pengawas -> foto ?>" alt="foto"></td>
                     <td><img height="50px"src="../pengawas/signatures/<?= $data_pengawas -> ttd ?>" alt="ttd"></td>
                     <td><?= $data_pengawas -> time ?></td>
+                    <td><a href="?id=<?= $data_pengawas -> id_pengawas ?>"><button class="btn btn-danger">hapus</button></a></td>
                   </tr>
                 <?php } ?>
           </tbody>

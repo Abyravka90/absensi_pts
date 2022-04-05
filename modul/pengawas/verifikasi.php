@@ -31,7 +31,7 @@ if(isset($_POST['kode_guru'])){
     $file_tmp = $_FILES['foto']['tmp_name'];
     if(in_array($ekstensi,$ekstensi_diperbolehkan)=== true){
         move_uploaded_file($file_tmp, 'foto/'.$nama);
-        $query_insert_absen_guru = mysqli_query($conn, "INSERT INTO `tbl_absen_guru` (id, kode_guru, id_mapel, id_kelas, jabatan, foto, `time`)
+        $query_insert_absen_guru = mysqli_query($conn, "INSERT INTO `tbl_absen_guru` (id_pengawas, kode_guru, id_mapel, id_kelas, jabatan, foto, `time`)
         VALUES('', '$kode_guru', '$mapel', '$kelas', 'pengawas', '$nama', now())");
         $query_select_pengawas = mysqli_query($conn, "SELECT * FROM `tbl_absen_guru` JOIN `tbl_guru` JOIN `tbl_kelas` JOIN `tbl_mapel`
         WHERE tbl_absen_guru.kode_guru ='$kode_guru' AND tbl_absen_guru.id_kelas = tbl_kelas.id_kelas
@@ -67,7 +67,7 @@ if(isset($_POST['kode_guru'])){
                             <div class="alert alert-warning">Data yang dikirimkan adalah </div>
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-4 pl-4"><img class="img-thumbnail" src="foto/<?= $foto ?>" height="50px" alt=""></div>
+                                    <div class="col-md-4 pl-4"><img src="foto/<?= $foto ?>" height="50px" alt=""></div>
                                     <div class="col-md-8">
                                         Kode Guru : <span class="badge badge-info"><?= $kode_guru ?></span><br>
                                         Nama : <span class="badge badge-info"><?= $nama_pengawas ?></span><br>
