@@ -12,7 +12,7 @@ if(isset($_POST['signaturesubmit'])){
     file_put_contents($file, $data);
     $update_absen = mysqli_query($conn,"UPDATE `tbl_siswa` SET ttd = '$signatureFileName' WHERE nisn = '$nisn'");
     if($update_absen == true){
-        echo '<script>alert("berhasil disimpan");window.location.href="index.php"</script>';
+        echo '<script>alert("berhasil disimpan");window.location.href="../login"</script>';
     }else{
         echo '<script>alert("gagal disimpan");window.location.href="index.php"</script>';
     }

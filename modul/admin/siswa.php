@@ -106,7 +106,7 @@
         var win = window.open('', '', 'height=700,width=700');
 
         win.document.write('<html><head>');
-        win.document.write('<title>ABSENSI PTS SMK FATAHILLAH CILEUNGSI</title>');   // <title> FOR PDF HEADER.
+        win.document.write('<title>ABSENSI UJIAN SEKOLAH SMK FATAHILLAH CILEUNGSI</title>');   // <title> FOR PDF HEADER.
         win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
         win.document.write('</head>');
         win.document.write('<body>');
