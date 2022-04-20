@@ -10,8 +10,8 @@ if(isset($_POST['signaturesubmit'])){
     $data = base64_decode($signature);
     $file = 'signatures/'.$signatureFileName;
     file_put_contents($file, $data);
-    $update_absen_pengawas = mysqli_query($conn,"UPDATE `tbl_absen_guru` SET ttd = '$signatureFileName' WHERE kode_guru = '$kode_guru'");
-    if($update_absen_pengawas == true){
+    $update_absen_panitia = mysqli_query($conn,"UPDATE `tbl_absen_panitia` SET ttd = '$signatureFileName' WHERE kode_guru = '$kode_guru'");
+    if($update_absen_panitia == true){
         echo '<script>alert("berhasil disimpan");window.location.href="../login"</script>';
     }else{
         echo '<script>alert("gagal disimpan");window.location.href="absen.php"</script>';
@@ -19,7 +19,6 @@ if(isset($_POST['signaturesubmit'])){
 } 
 if(isset($_POST['kode_guru'])){
     $kode_guru = $_POST['kode_guru'];
-
     $ekstensi_diperbolehkan = array('png','jpg','jpeg');
     $nama = $_FILES['foto']['name'];
     $x = explode('.',$nama);
@@ -27,10 +26,11 @@ if(isset($_POST['kode_guru'])){
     $file_tmp = $_FILES['foto']['tmp_name'];
     if(in_array($ekstensi,$ekstensi_diperbolehkan)=== true){
         move_uploaded_file($file_tmp, 'foto/'.$nama);
-        $query_insert_absen_guru = mysqli_query($conn, "INSERT INTO `tbl_absen_guru` (id, kode_guru, id_mapel, id_kelas, jabatan, foto, `time`)
-        VALUES('', '$kode_guru', 0, 0, 'panitia', '$nama', now())");
-        $query_select_panitia = mysqli_query($conn, "SELECT * FROM `tbl_absen_guru` JOIN `tbl_guru` 
-        WHERE tbl_absen_guru.kode_guru ='$kode_guru' AND tbl_absen_guru.kode_guru = tbl_guru.kode_guru");
+        $query_insert_absen_guru = mysqli_query($conn, "INSERT INTO `tbl_absen_panitia` (id, kode_guru, foto, `time`)
+        VALUES('', '$kode_guru', '$nama', now())" );
+        
+        $query_select_panitia = mysqli_query($conn, "SELECT * FROM `tbl_absen_panitia` JOIN `tbl_guru` 
+        WHERE tbl_absen_panitia.kode_guru ='$kode_guru' AND tbl_absen_panitia.kode_guru = tbl_guru.kode_guru");
         $data_panitia = mysqli_fetch_object($query_select_panitia);
         $nama_panitia = $data_panitia -> nama_lengkap;
         $foto = $data_panitia -> foto;

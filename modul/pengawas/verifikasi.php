@@ -10,7 +10,7 @@ if(isset($_POST['signaturesubmit'])){
     $data = base64_decode($signature);
     $file = 'signatures/'.$signatureFileName;
     file_put_contents($file, $data);
-    $update_absen_pengawas = mysqli_query($conn,"UPDATE `tbl_absen_guru` SET ttd = '$signatureFileName' WHERE kode_guru = '$kode_guru'");
+    $update_absen_pengawas = mysqli_query($conn,"UPDATE `tbl_absen_pengawas` SET ttd = '$signatureFileName' WHERE kode_guru = '$kode_guru'");
     if($update_absen_pengawas == true){
         echo '<script>alert("berhasil disimpan");window.location.href="../login"</script>';
     }else{
@@ -29,14 +29,15 @@ if(isset($_POST['kode_guru'])){
     $x = explode('.',$nama);
     $ekstensi = strtolower(end($x));
     $file_tmp = $_FILES['foto']['tmp_name'];
-    if(in_array($ekstensi,$ekstensi_diperbolehkan)=== true){
+    if(in_array($ekstensi,$ekstensi_diperbolehkan) === true){
         move_uploaded_file($file_tmp, 'foto/'.$nama);
-        $query_insert_absen_guru = mysqli_query($conn, "INSERT INTO `tbl_absen_guru` (id_pengawas, kode_guru, id_mapel, id_kelas, jabatan, foto, `time`)
-        VALUES('', '$kode_guru', '$mapel', '$kelas', 'pengawas', '$nama', now())");
-        $query_select_pengawas = mysqli_query($conn, "SELECT * FROM `tbl_absen_guru` JOIN `tbl_guru` JOIN `tbl_kelas` JOIN `tbl_mapel`
-        WHERE tbl_absen_guru.kode_guru ='$kode_guru' AND tbl_absen_guru.id_kelas = tbl_kelas.id_kelas
-         AND tbl_absen_guru.id_mapel = tbl_mapel.id_mapel 
-         AND tbl_absen_guru.kode_guru = tbl_guru.kode_guru");
+        $query_insert_absen_guru = mysqli_query($conn, "INSERT INTO `tbl_absen_pengawas` (id, kode_guru, id_mapel, id_kelas, foto, `time`)
+        VALUES('', '$kode_guru', '$mapel', '$kelas' , '$nama', now())");
+        $query_select_pengawas = mysqli_query($conn, "SELECT * FROM `tbl_absen_pengawas` JOIN `tbl_guru` JOIN `tbl_kelas` JOIN `tbl_mapel`
+        WHERE tbl_absen_pengawas.kode_guru ='$kode_guru'
+         AND tbl_absen_pengawas.id_kelas = tbl_kelas.id_kelas
+         AND tbl_absen_pengawas.id_mapel = tbl_mapel.id_mapel 
+         AND tbl_absen_pengawas.kode_guru = tbl_guru.kode_guru");
         $data_pengawas = mysqli_fetch_object($query_select_pengawas);
         $nama_pengawas = $data_pengawas -> nama_lengkap;
         $kelas = $data_pengawas -> nama_kelas;

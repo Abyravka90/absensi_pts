@@ -1,10 +1,8 @@
 <!-- blok PHP -->
 <?php 
     include '../../config/koneksi.php';
-
     // ambil data untuk nama guru
     $query_guru = mysqli_query($conn, "SELECT * FROM `tbl_guru`");
-
 ?>
 <!-- blok HTML -->
 <html>

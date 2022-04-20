@@ -37,7 +37,7 @@ if(isset($_POST['nama_lengkap'])){
             VALUES('','$nisn', '$nama_lengkap', '$kelas', '$mapel', '$nama', '1' , now())");
             if($query_insert_siswa == TRUE){
             $query_select_siswa = mysqli_query($conn, "SELECT * FROM `tbl_siswa` JOIN `tbl_kelas` JOIN `tbl_mapel` 
-            WHERE tbl_siswa.nisn = '$nisn' AND tbl_siswa.id_kelas = '$kelas' AND tbl_siswa.id_mapel = '$mapel'");
+            WHERE tbl_siswa.nisn = '$nisn' AND tbl_kelas.id_kelas = '$kelas' AND tbl_mapel.id_mapel = '$mapel'");
             $data_siswa = mysqli_fetch_object($query_select_siswa);
             $kelas = $data_siswa->nama_kelas;
             $mapel = $data_siswa->nama_mapel;
@@ -45,10 +45,10 @@ if(isset($_POST['nama_lengkap'])){
             $nisn = $data_siswa->nisn;
             }
         }else{
-            echo '<script>alert("format harus gambar");window.location.href="index.php"</script>';
+            echo '<script>alert("FORMAT FILE ANDA SALAH");window.location.href="index.php"</script>';
         }
     }else{
-        echo '<script>alert("nisn sudah terdaftar");window.location.href="index.php"</script>';
+        echo '<script>alert("DATA NISN ANDA SUDAH ABSEN");window.location.href="index.php"</script>';
     }
     
 }
