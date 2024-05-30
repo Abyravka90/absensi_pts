@@ -1,6 +1,7 @@
 <?php
 error_reporting(0);
 include '../../config/koneksi.php';
+include '../../config/functions.php';
 if(isset($_POST['signaturesubmit'])){ 
     $kode_guru = $_POST['kode_guru'];
     $signature = $_POST['signature'];
@@ -23,11 +24,18 @@ if(isset($_POST['kode_guru'])){
     $nama = $_FILES['foto']['name'];
     $x = explode('.',$nama);
     $ekstensi = strtolower(end($x));
-    $file_tmp = $_FILES['foto']['tmp_name'];
     if(in_array($ekstensi,$ekstensi_diperbolehkan)=== true){
-        move_uploaded_file($file_tmp, 'foto/'.$nama);
+        $file_tmp = $_FILES['foto']['tmp_name'];
+        //compress
+        $source_photo = $file_tmp;
+        $namecreate = "codeconia_".time();
+        $namecreatenumber = rand(1000, 10000);
+        $picname = $namecreate.$namecreatenumber;
+        $finalname = $picname.".jpeg";
+        $dest_photo = 'foto/'.$finalname;
+        compress_image($source_photo, $dest_photo, 10);
         $query_insert_absen_guru = mysqli_query($conn, "INSERT INTO `tbl_absen_panitia` (id, kode_guru, foto, `time`)
-        VALUES('', '$kode_guru', '$nama', now())" );
+        VALUES('', '$kode_guru', '$finalname', now())" );
         
         $query_select_panitia = mysqli_query($conn, "SELECT * FROM `tbl_absen_panitia` JOIN `tbl_guru` 
         WHERE tbl_absen_panitia.kode_guru ='$kode_guru' AND tbl_absen_panitia.kode_guru = tbl_guru.kode_guru");
@@ -53,7 +61,7 @@ if(isset($_POST['kode_guru'])){
                 <div class="card">
                         <div class="card-header text-center">
                             <img src="../../assets/images/logo/school.png" height="50px" alt="">
-                            <h3>Absensi PTS SMK Fatahillah</h3><br>
+                            <h3>Absensi <?= $nama_ujian ?> SMK Fatahillah</h3><br>
                         </div>
                         <div class="card-body text-center">
                             <div class="alert alert-warning">Data yang dikirimkan adalah </div>

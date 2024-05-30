@@ -1,3 +1,4 @@
+<?php include('../../config/koneksi.php'); ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,7 +8,6 @@
     <title>Login Akun</title>
   </head>
   <body>
-
     <div class="container" style="margin-top: 50px">
       <div class="row">
         <div class="col-md-5 offset-md-3">
@@ -22,7 +22,6 @@
                4. Silahkan verifikasi absen dengan membubuhkan tanda tangan<br>
                5. Absen hanya bisa dilakukan sekali per sesi maka jangan sampai salah<br>
                6. Jika Absen salah silahkan hubungi administrator<br>
-
               </div>
             </div>
             <div class="card-body">
@@ -49,18 +48,14 @@
                     </div>
                   </div>
                 </div>
-                
-              
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
-
     <script>
       $(document).ready(function() {
         $(".btn-login-siswa").click( function(){
@@ -69,7 +64,7 @@
               title: 'Login...',
               text: 'Anda Masuk sebagai Siswa'
             }).then( function(){
-              window.location.href = '/modul/siswa'
+              window.location.href = '/<?= $link ?>/modul/siswa'
             });
         });
         $(".btn-login-pengawas").click( function(){
@@ -78,7 +73,7 @@
               title: 'Login...',
               text: 'Anda Masuk sebagai Pengawas'
             }).then( function(){
-              window.location.href = '/modul/pengawas'
+              window.location.href = '/<?= $link ?>/modul/pengawas'
             });
         });
         $(".btn-login-panitia").click( function(){
@@ -87,92 +82,10 @@
               title: 'Login...',
               text: 'Anda Masuk sebagai Panitia'
             }).then( function(){
-              window.location.href = '/modul/panitia'
+              window.location.href = '/<?= $link ?>/modul/panitia'
             });
         });
-
-
       });
-
-        // $(".btn-login").click( function() {
-        
-          // var username = $("#username").val();
-          // var password = $("#password").val();
-
-          // if(username.length == "") {
-
-          //   Swal.fire({
-          //     type: 'warning',
-          //     title: 'Oops...',
-          //     text: 'Username Wajib Diisi !'
-          //   });
-
-          // } else if(password.length == "") {
-
-          //   Swal.fire({
-          //     type: 'warning',
-          //     title: 'Oops...',
-          //     text: 'Password Wajib Diisi !'
-          //   });
-
-          // } else {
-
-            // $.ajax({
-
-            //   url: "cek-login.php",
-            //   type: "POST",
-            //   data: {
-            //       "username": username,
-            //       "password": password
-            //   },
-
-              // success:function(response){
-
-              //   if (response == "success") {
-
-              //     Swal.fire({
-              //       type: 'success',
-              //       title: 'Login Berhasil!',
-              //       text: 'Anda akan di arahkan dalam 3 Detik',
-              //       timer: 3000,
-              //       showCancelButton: false,
-              //       showConfirmButton: false
-              //     })
-              //     .then (function() {
-              //       window.location.href = "dashboard.php";
-              //     });
-
-              //   } else {
-
-              //     Swal.fire({
-              //       type: 'error',
-              //       title: 'Login Gagal!',
-              //       text: 'silahkan coba lagi!'
-              //     });
-
-              //   }
-
-              //   console.log(response);
-
-              // },
-
-              // error:function(response){
-
-              //     Swal.fire({
-              //       type: 'error',
-              //       title: 'Opps!',
-              //       text: 'server error!'
-              //     });
-
-              //     console.log(response);
-
-              // }
-
-            // });
-
-          // }
-
-        // });
     </script>
   </body>
 </html>

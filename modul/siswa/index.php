@@ -1,18 +1,15 @@
 <!-- blok PHP -->
 <?php 
     include '../../config/koneksi.php';
-
     // ambil data untuk kelas
     $query_kelas = mysqli_query($conn, "SELECT * FROM `tbl_kelas`");
     // ambil data untuk mapel
     $query_mapel = mysqli_query($conn, "SELECT * FROM `tbl_mapel`");
-
 ?>
 <!-- blok HTML -->
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>

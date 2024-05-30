@@ -24,13 +24,13 @@
                 <div class="card">
                         <div class="card-header text-center bg-white">
                         <img src="../../assets/images/logo/pengawas.png" height="100px" alt="">
-                            <h3>Absensi Pengawas PTS </br> SMK Fatahillah Cileungsi</h3><br>
+                            <h3>Absensi Pengawas <?= $nama_ujian ?> </br> SMK Fatahillah Cileungsi</h3><br>
                         </div>
                         <form action="verifikasi.php" method="post" enctype="multipart/form-data">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="kelas">Nama Guru</label>
+                                        <label for="kelas">Nama Pengawas</label>
                                         <select class="form-control" name="kode_guru" id="">
                                             <?php while($data_guru = mysqli_fetch_object($query_guru)){ ?>
                                                 <option value="<?= $data_guru->kode_guru ?>"><?= $data_guru->nama_lengkap ?></option>

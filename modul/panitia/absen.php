@@ -18,7 +18,7 @@
                 <div class="card">
                         <div class="card-header text-center bg-white">
                         <img src="../../assets/images/logo/admin.png" height="100px" alt="">
-                            <h3>Absensi Panitia PTS </br> SMK Fatahillah Cileungsi</h3><br>
+                            <h3>Absensi Panitia <?= $nama_ujian ?> </br> SMK Fatahillah Cileungsi</h3><br>
                         </div>
                         <form action="verifikasi.php" method="post" enctype="multipart/form-data">
                             <div class="card">

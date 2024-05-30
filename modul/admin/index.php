@@ -30,7 +30,7 @@
                                 </div>
                             
                             </div>
-                          <button class="btn btn-login-pengawas btn-block btn-success">LOGIN</button>
+                          <button class="btn btn-login-pengawas btn-block btn-success btn-flat">LOGIN</button>
                       </div>
                   </div>
                 </div>
@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-
+    <?php include('../../config/koneksi.php'); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
@@ -57,97 +57,18 @@
               text: 'Password Wajib Diisi !'
             });
 
-          }else if(password == 'admin1717'){
+          }else if(password == 'admin'){
             Swal.fire({
               type: 'info',
               title: 'Login...',
               text: 'Anda Masuk sebagai Admin'
             }).then( function(){
-              window.location.href = '/modul/admin/siswa.php'
+              window.location.href = '/<?= $link ?>/modul/admin/siswa.php'
             });
           } 
         })
       });
 
-        // $(".btn-login").click( function() {
-        
-          // var username = $("#username").val();
-          // var password = $("#password").val();
-
-          // if(username.length == "") {
-
-          //   Swal.fire({
-          //     type: 'warning',
-          //     title: 'Oops...',
-          //     text: 'Username Wajib Diisi !'
-          //   });
-
-          // } else if(password.length == "") {
-
-          //   Swal.fire({
-          //     type: 'warning',
-          //     title: 'Oops...',
-          //     text: 'Password Wajib Diisi !'
-          //   });
-
-          // } else {
-
-            // $.ajax({
-
-            //   url: "cek-login.php",
-            //   type: "POST",
-            //   data: {
-            //       "username": username,
-            //       "password": password
-            //   },
-
-              // success:function(response){
-
-              //   if (response == "success") {
-
-              //     Swal.fire({
-              //       type: 'success',
-              //       title: 'Login Berhasil!',
-              //       text: 'Anda akan di arahkan dalam 3 Detik',
-              //       timer: 3000,
-              //       showCancelButton: false,
-              //       showConfirmButton: false
-              //     })
-              //     .then (function() {
-              //       window.location.href = "dashboard.php";
-              //     });
-
-              //   } else {
-
-              //     Swal.fire({
-              //       type: 'error',
-              //       title: 'Login Gagal!',
-              //       text: 'silahkan coba lagi!'
-              //     });
-
-              //   }
-
-              //   console.log(response);
-
-              // },
-
-              // error:function(response){
-
-              //     Swal.fire({
-              //       type: 'error',
-              //       title: 'Opps!',
-              //       text: 'server error!'
-              //     });
-
-              //     console.log(response);
-
-              // }
-
-            // });
-
-          // }
-
-        // });
     </script>
   </body>
 </html>

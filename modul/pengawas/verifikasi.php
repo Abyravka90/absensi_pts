@@ -1,6 +1,7 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 include '../../config/koneksi.php';
+include '../../config/functions.php';
 if(isset($_POST['signaturesubmit'])){ 
     $kode_guru = $_POST['kode_guru'];
     $signature = $_POST['signature'];
@@ -21,18 +22,22 @@ if(isset($_POST['kode_guru'])){
     $kode_guru = $_POST['kode_guru'];
     $kelas = $_POST['kelas'];
     $mapel = $_POST['mapel'];
-    // echo 'kode guru'.$kode_guru;
-    // echo 'kode kelas'.$kelas;
-    // echo 'kode mapel'.$mapel;
     $ekstensi_diperbolehkan = array('png','jpg','jpeg');
     $nama = $_FILES['foto']['name'];
     $x = explode('.',$nama);
     $ekstensi = strtolower(end($x));
-    $file_tmp = $_FILES['foto']['tmp_name'];
     if(in_array($ekstensi,$ekstensi_diperbolehkan) === true){
-        move_uploaded_file($file_tmp, 'foto/'.$nama);
+        $file_tmp = $_FILES['foto']['tmp_name'];
+        //compress
+        $source_photo = $file_tmp;
+        $namecreate = "codeconia_".time();
+        $namecreatenumber = rand(1000, 10000);
+        $picname = $namecreate.$namecreatenumber;
+        $finalname = $picname.".jpeg";
+        $dest_photo = 'foto/'.$finalname;
+        compress_image($source_photo, $dest_photo, 10);
         $query_insert_absen_guru = mysqli_query($conn, "INSERT INTO `tbl_absen_pengawas` (id, kode_guru, id_mapel, id_kelas, foto, `time`)
-        VALUES('', '$kode_guru', '$mapel', '$kelas' , '$nama', now())");
+        VALUES('', '$kode_guru', '$mapel', '$kelas' , '$finalname', now())");
         $query_select_pengawas = mysqli_query($conn, "SELECT * FROM `tbl_absen_pengawas` JOIN `tbl_guru` JOIN `tbl_kelas` JOIN `tbl_mapel`
         WHERE tbl_absen_pengawas.kode_guru ='$kode_guru'
          AND tbl_absen_pengawas.id_kelas = tbl_kelas.id_kelas
@@ -61,8 +66,8 @@ if(isset($_POST['kode_guru'])){
             <div class="col-md-5  offset-md-3">
                 <div class="card">
                         <div class="card-header text-center">
-                            <img src="../../assets/images/logo/school.png" height="50px" alt="">
-                            <h3>Absensi PTS SMK Fatahillah</h3><br>
+                            <img src="../../assets/images/logo/school.png" height="50px" alt="logo sekolah">
+                            <h3>Absensi <?= $nama_ujian ?> SMK Fatahillah</h3><br>
                         </div>
                         <div class="card-body text-center">
                             <div class="alert alert-warning">Data yang dikirimkan adalah </div>

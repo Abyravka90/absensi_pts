@@ -1,6 +1,7 @@
 <?php
 error_reporting(0);
 include '../../config/koneksi.php';
+include '../../config/functions.php';
 if(isset($_POST['signaturesubmit'])){ 
     $nisn = $_POST['nisn'];
     $signature = $_POST['signature'];
@@ -25,17 +26,26 @@ if(isset($_POST['nama_lengkap'])){
         $nama_lengkap = $_POST['nama_lengkap'];
         $kelas = $_POST['kelas'];
         $mapel = $_POST['mapel'];
+        
         //upload file dan penyimpanannya
         $ekstensi_diperbolehkan = array('png','jpg','jpeg');
         $nama = $_FILES['foto']['name'];
         $x = explode('.',$nama);
         $ekstensi = strtolower(end($x));
-        $file_tmp = $_FILES['foto']['tmp_name'];
         if(in_array($ekstensi,$ekstensi_diperbolehkan)=== true){
-            move_uploaded_file($file_tmp, 'foto/'.$nama);
+            $file_tmp = $_FILES['foto']['tmp_name'];
+            //compress
+            $source_photo = $file_tmp;
+            $namecreate = "codeconia_".time();
+            $namecreatenumber = rand(1000, 10000);
+            $picname = $namecreate.$namecreatenumber;
+            $finalname = $picname.".jpeg";
+            $dest_photo = 'foto/'.$finalname;
+            compress_image($source_photo, $dest_photo, 10);
             $query_insert_siswa = mysqli_query($conn, "INSERT INTO `tbl_siswa` (id, nisn, nama_lengkap, id_kelas, id_mapel, foto, `counter`, `time` ) 
-            VALUES('','$nisn', '$nama_lengkap', '$kelas', '$mapel', '$nama', '1' , now())");
-            if($query_insert_siswa == TRUE){
+            VALUES('','$nisn', '$nama_lengkap', '$kelas', '$mapel', '$finalname', '1' , now())");
+           
+           if($query_insert_siswa == TRUE){
             $query_select_siswa = mysqli_query($conn, "SELECT * FROM `tbl_siswa` JOIN `tbl_kelas` JOIN `tbl_mapel` 
             WHERE tbl_siswa.nisn = '$nisn' AND tbl_kelas.id_kelas = '$kelas' AND tbl_mapel.id_mapel = '$mapel'");
             $data_siswa = mysqli_fetch_object($query_select_siswa);
@@ -50,13 +60,11 @@ if(isset($_POST['nama_lengkap'])){
     }else{
         echo '<script>alert("DATA NISN ANDA SUDAH ABSEN");window.location.href="index.php"</script>';
     }
-    
 }
 ?>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
@@ -67,7 +75,7 @@ if(isset($_POST['nama_lengkap'])){
                 <div class="card">
                         <div class="card-header text-center">
                             <img src="../../assets/images/logo/school.png" height="50px" alt="">
-                            <h3>Absensi PTS SMK Fatahillah</h3><br>
+                            <h3>Absensi <?= $nama_ujian ?> SMK Fatahillah</h3><br>
                             <?php echo isset($msg)?$msg:''; ?>
                         </div>
                         <div class="card-body text-center">
