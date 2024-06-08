@@ -13,7 +13,7 @@ if(isset($_POST['signaturesubmit'])){
     file_put_contents($file, $data);
     $update_absen = mysqli_query($conn,"UPDATE `tbl_siswa` SET ttd = '$signatureFileName' WHERE nisn = '$nisn'");
     if($update_absen == true){
-        echo '<script>alert("berhasil disimpan");window.location.href="../login"</script>';
+        echo '<script>alert("berhasil disimpan");window.location.href="../siswa/list_soal.php"</script>';
     }else{
         echo '<script>alert("gagal disimpan");window.location.href="index.php"</script>';
     }
@@ -26,6 +26,7 @@ if(isset($_POST['nama_lengkap'])){
         $nama_lengkap = $_POST['nama_lengkap'];
         $kelas = $_POST['kelas'];
         $mapel = $_POST['mapel'];
+        $no_telp = $_POST['no_telp'];
         
         //upload file dan penyimpanannya
         $ekstensi_diperbolehkan = array('png','jpg','jpeg');
@@ -42,23 +43,23 @@ if(isset($_POST['nama_lengkap'])){
             $finalname = $picname.".jpeg";
             $dest_photo = 'foto/'.$finalname;
             compress_image($source_photo, $dest_photo, 10);
-            $query_insert_siswa = mysqli_query($conn, "INSERT INTO `tbl_siswa` (id, nisn, nama_lengkap, id_kelas, id_mapel, foto, `counter`, `time` ) 
-            VALUES('','$nisn', '$nama_lengkap', '$kelas', '$mapel', '$finalname', '1' , now())");
-           
-           if($query_insert_siswa == TRUE){
+            $query_insert_siswa = mysqli_query($conn, "INSERT INTO `tbl_siswa` (id, nisn, nomor_telp, nama_lengkap, id_kelas, id_mapel, foto, `counter`, `time` ) 
+            VALUES('','$nisn', '$no_telp', '$nama_lengkap', '$kelas', '$mapel', '$finalname', '1' , now())");
+          
+          if($query_insert_siswa == TRUE){
             $query_select_siswa = mysqli_query($conn, "SELECT * FROM `tbl_siswa` JOIN `tbl_kelas` JOIN `tbl_mapel` 
             WHERE tbl_siswa.nisn = '$nisn' AND tbl_kelas.id_kelas = '$kelas' AND tbl_mapel.id_mapel = '$mapel'");
             $data_siswa = mysqli_fetch_object($query_select_siswa);
+            $nisn = $data_siswa->nisn;
             $kelas = $data_siswa->nama_kelas;
             $mapel = $data_siswa->nama_mapel;
             $foto = $data_siswa->foto;
-            $nisn = $data_siswa->nisn;
             }
         }else{
             echo '<script>alert("FORMAT FILE ANDA SALAH");window.location.href="index.php"</script>';
         }
     }else{
-        echo '<script>alert("DATA NISN ANDA SUDAH ABSEN");window.location.href="index.php"</script>';
+        echo '<script>alert("DATA NOMOR UJIAN ANDA SUDAH ABSEN");window.location.href="index.php"</script>';
     }
 }
 ?>
@@ -96,8 +97,8 @@ if(isset($_POST['nama_lengkap'])){
                         </div>
                     </div>
                     <hr>
-                <button type="button" class="btn btn-danger" id="reset-btn">Clear</button>
-                <button type="button" class="btn btn-success" id="btn-save">Save</button>
+                    <button type="button" class="btn btn-primary" id="btn-save">Save</button>
+                <button type="button" class="btn btn-secondary" id="reset-btn">Clear</button>
             </div>
             <form id="signatureform" action="" style="display:none" method="post">
                 <input type="hidden" id="signature" name="signature">

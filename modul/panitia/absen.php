@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
+    <nav class="navbar fixed-top navbar-light bg-primary">
+        <span class="navbar-brand mb-0 h1 text-light">Absensi SMK Fatahillah Cileungsi</span>
+    </nav>
     <div class="container" style="margin-top: 50px">
         <div class="row">
             <div class="col-md-5  offset-md-3">
@@ -38,8 +41,8 @@
                                 </div>
                                 <hr>
                                 <div class="text-center pb-2">
-                                    <button type="button" class="btn btn-danger" id="reset-btn">Clear</button>
-                                    <button name="simpan" type="submit" class="btn btn-info" id="btn-save">Simpan</button>
+                                    <button name="simpan" type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
+                                    <button type="button" class="btn btn-secondary" id="reset-btn">Clear</button>
                                 </div>
                             </div>
                         </form>

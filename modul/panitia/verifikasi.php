@@ -55,6 +55,9 @@ if(isset($_POST['kode_guru'])){
 </head>
 
 <body>
+    <nav class="navbar fixed-top navbar-light bg-primary">
+        <span class="navbar-brand mb-0 h1 text-light">Absensi SMK Fatahillah Cileungsi</span>
+    </nav>
     <div class="container" style="margin-top: 50px">
         <div class="row">
             <div class="col-md-5  offset-md-3">
@@ -71,7 +74,6 @@ if(isset($_POST['kode_guru'])){
                                     <div class="col-md-8">
                                         Kode Guru : <span class="badge badge-info"><?= $kode_guru ?></span><br>
                                         Nama : <span class="badge badge-info"><?= $nama_panitia ?></span><br>
-                                        Foto : <span class="badge badge-info"><?= $foto ?></span><br>
                                     </div>
                                 </div>
                             </div>
@@ -80,8 +82,8 @@ if(isset($_POST['kode_guru'])){
                         </div>
                     </div>
                     <hr>
-                <button type="button" class="btn btn-danger" id="reset-btn">Clear</button>    
-                <button type="button" class="btn btn-success" id="btn-save">Save</button>
+                    <button type="button" class="btn btn-primary" id="btn-save">Save</button>
+                <button type="button" class="btn btn-secondary" id="reset-btn">Clear</button>    
             </div>
             <form id="signatureform" action="" style="display:none" method="post">
                 <input type="hidden" id="signature" name="signature">

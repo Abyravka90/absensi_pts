@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <title>Login Akun</title>
   </head>
-  <body>
+  <body>  
+<nav class="navbar fixed-top navbar-light bg-primary">
+  <span class="navbar-brand mb-0 h1 text-light">Absensi SMK Fatahillah Cileungsi</span>
+</nav>
     <div class="container" style="margin-top: 50px">
       <div class="row">
         <div class="col-md-5 offset-md-3">
@@ -15,7 +18,7 @@
             <div class="card-header text-center">
             <img src="../../assets/images/logo/school.png" width="50px" alt=""><br>
               <b class="text-center">petunjuk absen</b><br>
-              <div class="alert alert-info text-left">
+              <div class="alert alert-light text-left">
                1. Silahkan pilih menu dibawah sesuai dengan data absen anda<br>
                2. Isikan data pada form yang ada jangan lupa tambahkan foto anda<br>
                3. Pastikan data yang diisikan benar <br>
@@ -30,21 +33,21 @@
                   <div class="row">
                     <div class="col-md-4">
                           <div class="text-center">
-                            <img class="img img-thumbnail pb-2 mb-2" src="../../assets/images/logo/student.png" width="100px" alt="">
+                            <img class="img img-thumbnail pb-2 mb-2" src="../../assets/images/logo/student.png" width="300px" alt="">
                           </div>
-                          <button class="btn btn-login-siswa btn-block btn-info">siswa</button>
+                          <button class="btn btn-login-siswa btn-block btn-primary">siswa</button>
                     </div>
                     <div class="col-md-4">
                             <div class="text-center">
-                              <img class="img img-thumbnail pb-2 mb-2" src="../../assets/images/logo/pengawas.png" width="100px" alt="">
+                              <img class="img img-thumbnail pb-2 mb-2" src="../../assets/images/logo/pengawas.png" width="300px" alt="">
                             </div>
-                          <button class="btn btn-login-pengawas btn-block btn-success">pengawas</button>
+                          <button class="btn btn-login-pengawas btn-block btn-primary">pengawas</button>
                       </div>
                     <div class="col-md-4">
                           <div class="text-center">
-                                <img class="img img-thumbnail pb-2 mb-2" src="../../assets/images/logo/admin.png" width="100px" alt="">
+                                <img class="img img-thumbnail pb-2 mb-2" src="../../assets/images/logo/admin.png" width="300px" alt="">
                           </div>
-                          <button class="btn btn-login-panitia btn-block btn-warning">panitia</button>
+                          <button class="btn btn-login-panitia btn-block btn-primary">panitia</button>
                     </div>
                   </div>
                 </div>

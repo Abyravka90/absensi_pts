@@ -87,8 +87,8 @@ if(isset($_POST['kode_guru'])){
                         </div>
                     </div>
                     <hr>
-                <button type="button" class="btn btn-danger" id="reset-btn">Clear</button>    
-                <button type="button" class="btn btn-success" id="btn-save">Save</button>
+                    <button type="button" class="btn btn-primary" id="btn-save">Save</button>
+                <button type="button" class="btn btn-secondary" id="reset-btn">Clear</button>    
             </div>
             <form id="signatureform" action="" style="display:none" method="post">
                 <input type="hidden" id="signature" name="signature">

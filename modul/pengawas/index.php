@@ -8,6 +8,9 @@
     <title>Login Akun</title>
   </head>
   <body>
+  <nav class="navbar fixed-top navbar-light bg-primary">
+    <span class="navbar-brand mb-0 h1 text-light">Absensi SMK Fatahillah Cileungsi</span>
+  </nav>
     <div class="container" style="margin-top: 50px">
       <div class="row">
         <div class="col-md-5 offset-md-3">
@@ -23,7 +26,7 @@
                   <div class="row">
                     <div class="col-md-12">
                             <div class="text-center">
-                              <img class="img img-thumbnail pb-2 mb-2" src="../../assets/images/logo/pengawas.png" width="100px" alt="">
+                              <img class="img img-thumbnail pb-2 mb-2" src="../../assets/images/logo/pengawas.png" width="300px" alt="">
                             </div>
                             <div class="text-center">
                                 <div class="form-group">
@@ -31,7 +34,7 @@
                                 </div>
                             
                             </div>
-                          <button class="btn btn-login-pengawas btn-block btn-success">LOGIN</button>
+                          <button class="btn btn-login-pengawas btn-block btn-primary">LOGIN</button>
                       </div>
                   </div>
                 </div>
